@@ -1,20 +1,16 @@
 const test = require('tap').test
 const nano = require('nano')
-var path = require('path')
+const path = require('path')
 
 const createIndex = require('../')
 
-var url = process.env.COUCH || 'http://localhost:5984'
-var dbname = 'couchdb-create-index-test'
-var couch = nano(url)
-var db = couch.use(dbname)
-
-function clear (callback) {
-  couch.db.destroy(dbname, callback)
-}
+const url = process.env.COUCH || 'http://localhost:5984'
+const dbname = 'couchdb-create-index-test'
+const couch = nano(url)
+const db = couch.use(dbname)
 
 test('configure from json', t => {
-  clear(() => {
+  couch.db.destroy(dbname, () => {
     createIndex(url + '/' + dbname, path.join(__dirname, 'fixtures', 'simple-index.json'), (error, response) => {
       t.notOk(error, 'no error occured')
       t.equal(response.result, 'created', 'index has been created')
