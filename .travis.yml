@@ -8,16 +8,12 @@ node_js:
   - '9'
   - '8'
   - '6'
-  - '4'
 services:
   - docker
 os:
   - linux
 before_script:
   - docker run -d -p 5984:5984 --name couchdb couchdb
-  - sleep 10
-  - curl http://localhost:5984
-  - curl http://localhost:5984/_session
 after_success:
   - npm run travis-deploy-once "npm run semantic-release"
 branches:
