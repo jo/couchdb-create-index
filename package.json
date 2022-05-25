@@ -32,5 +32,10 @@
     "couchdb-compile": "^1.11.2",
     "couchdb-ensure": "^2.1.0",
     "nano-option": "^2.2.0"
+  },
+  "release": {
+    "branches": [
+      "main"
+    ]
   }
 }
